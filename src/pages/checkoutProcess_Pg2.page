@@ -1,0 +1,108 @@
+<apex:page standardController="Inventory__c" tabStyle="Inventory__c" docType="HTML-5.0" extensions="invCtrlExt">
+    
+    <script type="text/javascript">
+        function selectAllCheckboxes(obj,receivedInputID){
+            var inputCheckBox = document.getElementsByTagName("input");                  
+            for(var i=0; i<inputCheckBox.length; i++){          
+                if(inputCheckBox[i].id.indexOf(receivedInputID)!=-1){                                     
+                    inputCheckBox[i].checked = obj.checked;
+                }
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        function disableButton(obj, receivedInputID){
+           var inputButton =  document.getElementsByTagName("ipbutton");
+           alert inputButton;
+           if(inputButton.length > 0)
+               obj.disabled = true;
+        }
+    </script>
+    
+    <apex:form id="theform">
+        <apex:pageBlock title="Inventory List" id="PageBlock1" rendered="{!showCart}">
+            <apex:pageBlockSection title="Filter Inventory List" collapsible="false" columns="1">
+                <B>Filter By Branch : </B>
+                <apex:selectList size="1" id="brnchValues" value="{!branchVal}" multiselect="false">
+                    <apex:selectOptions value="{!branchValues}"/>
+                        <apex:actionSupport rerender="PageBlock2" event="onchange"/>
+                </apex:selectList>
+                <B>Filter By Catalog : </B>
+                <apex:selectList size="1" id="catalogVals" value="{!catVals}" multiselect="false">
+                    <apex:selectOptions value="{!rTypeValues}"/>
+                        <apex:actionSupport rerender="PageBlock2, bookVals" event="onchange"/>
+                </apex:selectList>
+                <apex:selectList size="1" id="bookVals" value="{!bookTypeVals}" multiselect="false">
+                    <apex:selectOptions value="{!bookTypeValues}"/>
+                        <apex:actionSupport rerender="PageBlock2" event="onchange"/>
+                </apex:selectList>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        <apex:pageBlock id="PageBlock2" title="Filtered Inventory Items" rendered="{!showCart}">
+            <h1 style="color:red"><i>Please sure you only select 5 items to the cart at a time.</i></h1>
+            <apex:pageBlockTable value="{!WrapList}" var="invwrap" rows="25" id="pgBlockTable">
+                <apex:column headerValue="Action" width="20%">
+                    <apex:commandLink value="Add to Cart" action="{!addCart}" styleClass="btn" style="color:black;text-decoration:none" id="ipbutton">
+                        <apex:param value="{!invwrap.InventoryId}" assignTo="{!InventoryId}" name="assignId"/>
+                    </apex:commandLink>
+                    <apex:commandLink value="Remove from Cart" action="{!addCart}" styleClass="btn" style="color:black;text-decoration:none">
+                        <apex:param value="{!invwrap.InventoryId}" assignTo="{!remInvId}" name="remId"/>
+                    </apex:commandLink>
+                </apex:column>
+                <apex:column headerValue="Inventory Id">
+                    <apex:outputLink value="/{!invwrap.invent.Id}" target="_blank">{!invwrap.invent.Name}</apex:outputLink>
+                </apex:column>
+                <apex:column headerValue="Title">
+                    <apex:outputField value="{!invwrap.invent.Title__c}"/>
+                </apex:column>
+                <apex:column headerValue="Author Name">
+                    <apex:outputField value="{!invwrap.invent.Author_Name__c}"/>
+                </apex:column>
+                <apex:column headerValue="Catalog">
+                    <apex:outputField value="{!invwrap.invent.RecordType.Name}"/>
+                </apex:column>
+                <apex:column headerValue="Book Type">
+                    <apex:outputField value="{!invwrap.invent.Book_Type__c}"/>
+                </apex:column>
+                <apex:column headerValue="Video Type">
+                    <apex:outputField value="{!invwrap.invent.Video_Type__c}"/>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+        <apex:pageBlock id="PageBlock3" title="Cart Items" rendered="{!showCart}">
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton value="Place Hold" action="{!placeHold}"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockTable value="{!invList}" var="invCkOutItems">
+                <apex:column headerValue="Inventory #">
+                    <apex:outputText value="{!invCkOutItems.Name}"/>
+                </apex:column>
+                <apex:column headerValue="Title">
+                    <apex:outputText value="{!invCkOutItems.Title__c}"/>
+                </apex:column>
+                <apex:column headerValue="Author Name">
+                    <apex:outputText value="{!invCkOutItems.Author_Name__r.Name}"/>
+                </apex:column>
+                <apex:column headerValue="Catalog">
+                    <apex:outputText value="{!invCkOutItems.RecordType.Name}"/>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+        <apex:pageBlock id="PageBlock4" title="Final Cart Items" rendered="{!showCart <> true}">
+            <apex:pageBlockTable value="{!invList}" var="invCkOutItems">
+                <apex:column headerValue="Inventory #">
+                    <apex:outputText value="{!invCkOutItems.Name}"/>
+                </apex:column>
+                <apex:column headerValue="Title">
+                    <apex:outputText value="{!invCkOutItems.Title__c}"/>
+                </apex:column>
+                <apex:column headerValue="Author Name">
+                    <apex:outputText value="{!invCkOutItems.Author_Name__r.Name}"/>
+                </apex:column>
+                <apex:column headerValue="Catalog">
+                    <apex:outputText value="{!invCkOutItems.RecordType.Name}"/>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>     
+</apex:page>

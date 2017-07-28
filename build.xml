@@ -1,0 +1,72 @@
+<!-- Deepak Malkani : Created build.xml file for ant based/CI deployments -->
+<project name="Sample usage of Salesforce Ant tasks" default="deployProject" basedir="." xmlns:sf="antlib:com.salesforce">
+
+	<taskdef uri="antlib:com.salesforce"
+        resource="com/salesforce/antlib.xml"
+        classpath="${basedir}/lib/ant-salesforce.jar"/>
+		
+    <property file="build.properties"/>
+    <property environment="env"/>
+	
+	<!-- Deepak Malkani : Deployproject will deploy from your source directory to the target Org -->
+	
+	<!--<target name="proxy">
+		<property name="proxy.host" value="webproxystatic-on.tsl.telus.com"/>
+		<property name="proxy.port" value="8080"/>
+		<property name="proxy.user" value=""/>
+		<property name="proxy.pass" value=""/>
+		<setproxy proxyhost="${proxy.host}" proxyport="${proxy.port}" proxyuser="${proxy.user}" proxypassword="${proxy.pass}"
+	</target> -->
+	
+    <target name="validateProjectOnly">
+        <echo message="deploying from src" /> 
+        <sf:deploy username="${sf.target.org.deploy.username}"
+            password="${sf.target.org.deploy.password}"
+            serverurl="${sf.target.org.serverurl}"			
+			maxPoll="500"
+        	checkOnly="true"
+			testLevel="RunLocalTests"
+            deployroot="src">			
+		</sf:deploy>
+    </target>
+	
+	<target name="validateProjectWtTest">
+        <echo message="deploying from src" /> 
+        <sf:deploy username="${sf.target.org.deploy.username}"
+            password="${sf.target.org.deploy.password}"
+            serverurl="${sf.target.org.serverurl}"			
+			maxPoll="500"
+        	checkOnly="true"
+			testLevel="RunLocalTests"
+            deployroot="src">			
+		</sf:deploy>
+    </target>
+	
+	<target name="deployComponents">
+	        <echo message="deploying from src" /> 
+	        <sf:deploy username="${sf.target.org.deploy.username}"
+	            password="${sf.target.org.deploy.password}"
+	            serverurl="${sf.target.org.serverurl}"			
+				maxPoll="500"
+	            deployroot="src">			
+			</sf:deploy>
+	 </target>
+	 
+	<target name="extractMetadata">
+      <mkdir dir="retrieveUnpackaged"/>
+      <!-- Retrieve the contents into another directory -->
+      <sf:retrieve username="${sf.target.org.deploy.username}" password="${sf.target.org.deploy.password}" serverurl="${sf.target.org.serverurl}" retrieveTarget="retrieveUnpackaged" unpackaged="unpackaged/package.xml"/>
+    </target>
+	
+	<target name="deployProject">
+        <echo message="deploying from src" /> 
+        <sf:deploy username="${sf.target.org.deploy.username}"
+            password="${sf.target.org.deploy.password}"
+            serverurl="${sf.target.org.serverurl}"			
+			maxPoll="500"
+			runAllTests="true"
+            deployroot="src">			
+		</sf:deploy>
+    </target>
+
+</project>

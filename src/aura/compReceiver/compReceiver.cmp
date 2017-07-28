@@ -1,0 +1,8 @@
+<aura:component >
+	<aura:registerEvent name="myMessageEvent" type="c:theMessage"/>
+	<ui:button label="1" press="{!c.send}"/>
+	<ui:button label="2" press="{!c.send}"/>
+	<aura:attribute name="myText" type="String"/>
+	<aura:handler name="myMessageEvent" event="c:theMessage" action="{!c.answer}"/>
+	Message: {!v.myText}
+</aura:component>

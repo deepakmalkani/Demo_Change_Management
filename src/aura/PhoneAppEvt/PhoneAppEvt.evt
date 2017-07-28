@@ -1,0 +1,6 @@
+<!--
+	Event Created to fire from Application. This event has Phone Numbers as attributes
+-->
+<aura:event type="APPLICATION" description="Event template">
+    <aura:attribute name="PhoneStr" type="String" />
+</aura:event>

@@ -1,0 +1,4 @@
+<aura:component description="Inner component">
+    <aura:attribute name="param1" type="String"/>
+    Value of Param Passed : {!v.param1}
+</aura:component>

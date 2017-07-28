@@ -1,0 +1,7 @@
+<apex:component controller="myComponentController">
+  <apex:attribute name="value" description="This is the component attribute" type="String" required="true" assignTo="{!componentValue}"/>
+    <apex:pageBlock >
+        <p>Value is : "{!value}"</p>
+        <p>Component Value is "{!componentValue}"</p> 
+    </apex:pageBlock>  
+</apex:component>

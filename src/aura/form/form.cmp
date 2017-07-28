@@ -1,0 +1,90 @@
+<aura:component controller="ExpenseController" implements="force:appHostable,flexipage:availableForAllPageTypes" >
+    
+  <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+  <aura:handler name="updateExpense" event="c:updateExpenseItem" action="{!c.update}"/>
+  <!--referencing style sheets first -->
+  <ltng:require styles="/resource/slds090/assets/styles/salesforce-lightning-design-system.min.css"/>
+  
+  <!-- defining all aura component attributes -->
+  <aura:attribute name="expenses" type="dpklightning__Expense__c[]"/>
+  <aura:attribute name="newExpense" type="Expense__c"
+         default="{ 'sobjectType': 'Expense__c',
+                         'Name': '',
+                         'dpklightning__Amount__c': 0,
+                         'dpklightning__Client__c': '', 
+                         'dpklightning__Date__c': '',
+                         'dpklightning__Reimbursed__c': false
+                       }"/>
+    <aura:attribute name="totalReimb" type="Double" default="0.0"/>
+    <aura:attribute name="totalExp" type="Double" default="0.0"/>
+  <!-- Input Form using components -->
+  <div class="container">
+      <form class="slds-form--stacked">
+          <div class="slds-form-element slds-is-required">
+            <div class="slds-form-element__control">
+                <ui:inputText aura:id="expname" label="Expense Name"
+                        class="slds-input"
+                        labelClass="slds-form-element__label"
+                        value="{!v.newExpense.Name}"
+                        required="true"/>
+            </div>
+          </div>
+          <div class="slds-form-element slds-is-required">
+            <div class="slds-form-element__control">
+                <!--for any custom field reference with namespace__field name -->
+                <ui:inputNumber aura:id="amount" label="Amount"
+                           class="slds-input"
+                           labelClass="slds-form-element__label"
+                           value="{!v.newExpense.dpklightning__Amount__c}"
+                           placeholder="20.80" required="true"/>
+            </div>
+          </div>
+          <div class="slds-form-element">
+          	<div class="slds-form-element__control">
+            	<ui:inputText aura:id="client" label="Client"
+                          class="slds-input"
+                          labelClass="slds-form-element__label"
+                          value="{!v.newExpense.dpklightning__Client__c}"
+                          placeholder="ABC Co."/>
+           	</div>
+         </div>
+         <div class="slds-form-element">
+           <div class="slds-form-element__control">
+             <ui:inputDateTime aura:id="expdate" label="Expense Date"
+                               class="slds-input"
+                               labelClass="slds-form-element__label"
+                               value="{!v.newExpense.dpklightning__Date__c}"
+                               displayDatePicker="true"/>
+            </div>
+          </div>
+          <div class="slds-form-element">
+            <ui:inputCheckbox aura:id="reimbursed" label="Reimbursed?"
+                              class="slds-checkbox"
+                              labelClass="slds-form-element__label"
+                              value="{!v.newExpense.dpklightning__Reimbursed__c}"/>
+            <ui:button label="Submit" 
+                       class="slds-button slds-button--neutral"
+                       labelClass="label"
+                       press="{!c.createExpense}"/>
+         </div>
+      </form>
+  </div>
+  
+  <div class="container slds-p-top--medium">
+  	<div class="row">
+        <p class="slds-tile__title slds-truncate">Nos of Expenses</p>
+        <ui:outputNumber class="slds-truncate" value="{!v.totalExp}"/> 
+    </div>    
+  </div>
+  
+  <!--Display expense records -->
+  <div class="container slds-p-top--medium">
+  	<div id="list" class="row">
+             <aura:iteration items="{!v.expenses}" var="expense">
+                 <c:expenseList expense="{!expense}"/>   
+             </aura:iteration>        
+    </div>
+  </div>
+  
+ 
+</aura:component>

@@ -1,0 +1,25 @@
+.THIS.primary{
+    background: #4ECDC4  !important;
+}
+
+.THIS .uiOutputText {
+   width: 25%;
+   float: left;
+   font-weight: bold;
+}
+
+.THIS .uiOutputPhone {
+    color: #2574A9;
+}
+
+.THIS .uiOutputTextArea {
+    float:clear;
+}
+
+.THIS .uiOutputEmail {
+    float: right;
+}
+
+.THIS .uiButton {
+    margin-top: 20px !important;
+}

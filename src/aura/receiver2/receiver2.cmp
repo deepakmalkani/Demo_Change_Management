@@ -1,0 +1,5 @@
+<aura:component >
+	<aura:attribute name="myText2" type="String"/>
+	<aura:handler event="c:message" action="{!c.myreceiver2}"/>
+	Message : {!v.myText2}
+</aura:component>

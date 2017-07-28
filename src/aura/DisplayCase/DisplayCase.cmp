@@ -1,0 +1,20 @@
+<aura:component controller="DisplayCaseController">
+    <ltng:require styles="/resource/slds090/assets/styles/salesforce-lightning-design-system.min.css"/>
+    <aura:attribute name="caseId" type="String" />
+    <aura:attribute name="record" type="Case" />
+    <aura:handler name="init" value="{!this}" action="{!c.getCases}" />
+                  
+    <div class="slds-card"> 
+    	
+        <p class="slds-truncate"> Case Subject :
+            <ui:outputText value="{!v.record.Subject}"/>
+        </p>
+        <p class="slds-truncate"> Case Description :
+            <ui:outputText value="{!v.record.Description}"/>
+        </p>
+        <p class="slds-truncate"> Case Status :
+            <ui:outputText value="{!v.record.Status}"/>
+        </p>
+    </div>
+    
+</aura:component>

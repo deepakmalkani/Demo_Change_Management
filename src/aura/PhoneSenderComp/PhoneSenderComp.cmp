@@ -1,0 +1,9 @@
+<!--
+	Aura Component which will be firing Phone App Events  
+-->
+
+<aura:component access="public" description="my sender component">
+    <aura:registerEvent name="eventmyPhone" type="c:PhoneAppEvt"/>
+    <ui:inputPhone aura:id="Phone" label="Phone" placeholder="111-111-1111"/>
+    <ui:button label="Submit" press="{!c.fireEvt}"/>
+</aura:component>

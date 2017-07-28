@@ -1,0 +1,33 @@
+<apex:page standardController="task"  >
+    <apex:sectionHeader title="Task Edit" subtitle="{!task.Subject}"/>
+    <apex:form >
+        <apex:pageBlock title="Task Edit" mode="edit">
+
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Save" action="{!save}"/>
+                <apex:commandButton value="Save & New" action="{!save}" />
+                <apex:commandButton value="Cancel" action="{!cancel}"/>
+            </apex:pageBlockButtons>
+
+
+            <apex:pageBlockSection title="Task Information" columns="2">
+                <apex:inputField value="{!task.OwnerId}" required="true"/>
+                <apex:inputField value="{!task.Status}" required="true"/>
+                <apex:inputField value="{!task.Subject}" required="true"/>
+                <apex:inputField value="{!task.ActivityDate}" required="false"/>
+                <apex:inputField value="{!task.WhoId}" required="false"/>
+                <apex:inputField value="{!task.Priority}" required="true"/>
+                <apex:inputField value="{!task.WhatId}" required="false"/>
+            </apex:pageBlockSection>
+
+
+            <apex:pageBlockSection title="Description Information" columns="1">
+                <apex:inputField value="{!task.Description}" required="false"/>
+            </apex:pageBlockSection>
+            
+            
+             
+        </apex:pageBlock>
+    </apex:form>
+    <apex:relatedList list="Attachments" />
+</apex:page>

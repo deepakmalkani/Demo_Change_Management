@@ -1,0 +1,6 @@
+<!--
+	Aura Application Event to be fired for Phone Numbers
+-->
+<aura:event type="APPLICATION" description="Event template" access="global">
+    <aura:attribute name="phone" type="String" />
+</aura:event>

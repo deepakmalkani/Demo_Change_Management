@@ -1,0 +1,10 @@
+<!--
+	Aura Component which will be receiving Phone App Events  
+-->
+<aura:component >
+    <aura:attribute name="myText" type="String" default="None" />
+    <aura:handler event="c:PhoneAppEvt" action="{!c.myReceiving}"/>
+    <p>
+    	Phone Number is : <ui:outputText aura:id="myOutputPhone" value="" />
+    </p>
+</aura:component>

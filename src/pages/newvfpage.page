@@ -1,0 +1,10 @@
+<apex:page standardController="Account" sidebar="false" showHeader="false" showChat="false">
+    <apex:pageBlock >
+        <apex:pageBlockSection >
+            <apex:outputField label="Name" value="!{Name}"/>
+        </apex:pageBlockSection>>
+    </apex:pageBlock>>
+  <!-- Begin Default Content REMOVE THIS -->
+  
+  <!-- End Default Content REMOVE THIS -->
+</apex:page>

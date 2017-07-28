@@ -1,0 +1,7 @@
+<apex:page controller="leadconversioncontroller">
+  <!-- Begin Default Content REMOVE THIS -->
+    <flow:interview name="Custom_Lead_ConvertFlow" interview="{!myCustomLeadConversion}" finishLocation="{!myreturnUrl}">
+    <apex:param name="vaLeadId" value="{!vLeadId}"/>
+    <apex:param name="vaUserId" value="{!vUserId}"/>
+    </flow:interview>
+ </apex:page>

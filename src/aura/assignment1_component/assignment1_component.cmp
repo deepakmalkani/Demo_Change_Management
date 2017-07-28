@@ -1,0 +1,22 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes">
+    <aura:attribute name="sendParam" type="String" default="This is what I am passing"/>
+    <div class="row">
+        <h2>This is the Header 2 </h2>
+        <ul class="row">
+        	<li class="red">This is red.</li>
+            <li class="blue">This is Blue.</li>
+            <li class="green">This is Green.</li>
+        </ul>
+    </div>
+    <c:assignment1a_component param1="{!v.sendParam}"/>
+    <p>
+        <c:assignment1a_component param1="This is another passing..a test"/>
+    </p>
+    Body is : {!v.body}
+    <aura:set attribute="body">
+        <div>
+    	Hello World..
+        </div> 
+   </aura:set>
+    Body is now : {!v.body}
+</aura:component>

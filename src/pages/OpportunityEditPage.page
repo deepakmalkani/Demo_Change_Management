@@ -1,0 +1,77 @@
+<apex:page standardController="Opportunity" extensions="OpportunityControllerExt" tabStyle="Opportunity" docType="HTML-5.0" showChat="true">
+    
+    <apex:form >
+        <apex:pageBlock title="Opportunity : {!Opportunity.Name}">
+            <apex:pageBlockSection title="Opportunity Information" collapsible="false">
+                <apex:outputField value="{!Opportunity.OwnerId}"/>
+                <apex:repeat value="{!$ObjectType.Opportunity.FieldSets.OpportunityInfo}" var="f">
+                    <apex:inputField value="{!Opportunity[f]}"/>                
+                </apex:repeat>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="Additional Information" collapsible="false">
+                <apex:repeat value="{!$ObjectType.Opportunity.FieldSets.AdditionalInfo}" var="FSAddInfo">
+                    <apex:inputField value="{!Opportunity[FSAddInfo]}"/>
+                </apex:repeat>
+            </apex:pageBlockSection>
+            <apex:outputPanel id="thePanel">            
+                <apex:pageBlockSection title="Region Selection" collapsible="false">
+                        <apex:pageBlockSectionItem >
+                            <apex:actionRegion >                                       
+                            <apex:outputLabel for="region" value="Region "/>
+                            <apex:selectList size="1" value="{!selectedRegion}" multiselect="false" id="region">
+                                <apex:actionSupport event="onchange" reRender="thePanel">
+                                    <apex:param name="selectedRegion" value="{!selectedRegion}" assignTo="{!selectedRegVal}"/>
+                                </apex:actionSupport>
+                                <apex:selectOptions value="{!Region}"/>
+                            </apex:selectList> 
+                            </apex:actionRegion>
+                        </apex:pageBlockSectionItem>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection title="Asset Class Selection" collapsible="false">
+                    <apex:pageBlockSectionItem >
+                        <apex:actionRegion >
+                        <apex:outputLabel for="theAssetClass" value="Asset Class "/>
+                        <apex:selectList size="1" multiselect="false" id="theAssetClass" value="{!selectedAsset}">
+                            <apex:actionSupport event="onchange" reRender="theProductChoice">
+                                <apex:param name="selectedAsset" value="{!selectedAsset}" assignTo="{!selectedAssVal}"/>
+                            </apex:actionSupport>
+                            <apex:selectOptions value="{!Asset}"/>
+                        </apex:selectList>
+                        </apex:actionRegion>
+                    </apex:pageBlockSectionItem>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection title="Product Selection" collapsible="false" columns="1" id="theProductChoice">
+                    <apex:actionRegion >
+                    <apex:pageBlockSectionItem >
+                    <apex:pageBlockTable var="prod" value="{!WrapperProducts}">
+                        <apex:column headerValue="Select">
+                            <apex:inputCheckbox value="{!prod.selector}"/>
+                            <apex:actionSupport event="onclick" reRender="theProdSelector">
+                                    <apex:param name="ProductId" value="{!prod.prodObj.Id}" assignTo="{!ProductId}"/>
+                            </apex:actionSupport>
+                        </apex:column>
+                        <apex:column value="{!prod.prodObj.Name}"/>
+                        <apex:column value="{!prod.prodObj.Asset__c}"/>
+                        <apex:column value="{!prod.prodobj.IsActive}"/>
+                        <apex:column value="{!prod.prodObj.Multi__c}"/>
+                    </apex:pageBlockTable>
+                    </apex:pageBlockSectionItem>
+                    </apex:actionRegion>
+                </apex:pageBlockSection>
+            </apex:outputPanel>
+            <apex:pageBlockSection title="Selected Products" id="theProdSelector" collapsible="false" columns="1">
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockTable value="{!SelectProd}" var="selectedProd">
+                        <apex:column value="{!selectedProd.Name}"/>
+                        <apex:column value="{!selectedProd.Asset__c}"/>
+                        <apex:column value="{!selectedProd.IsActive}"/>
+                        <apex:column value="{!selectedProd.Multi__c}"/>
+                    </apex:pageBlockTable>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>                 
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Save" action="{!Save}"/>
+            </apex:pageBlockButtons>       
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

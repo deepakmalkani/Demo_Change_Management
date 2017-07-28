@@ -1,0 +1,3 @@
+<apex:page >
+  <c:simpleComponent value="Hi There..this is my value"/>
+</apex:page>

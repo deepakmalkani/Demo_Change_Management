@@ -1,0 +1,20 @@
+<apex:page standardController="Account" docType="HTML-5.0">
+  <apex:pageBlock >
+      <apex:pageBlockSection title="{! Account.Name } Location">
+        <apex:outputPanel >
+            <apex:outputField value="{!Account.BillingStreet}"/><br/>
+            <apex:outputField value="{!Account.BillingCity}"/>, &nbsp;
+            <apex:outputField value="{!Account.BillingState}"/> &nbsp;
+            <apex:outputField value="{!Account.BillingPostalCode}"/><br/>
+            <apex:outputField value="{!Account.BillingCountry}"/>
+        </apex:outputPanel>
+        
+    <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=301+Park+Avenue,+NY,+United+States&key=AIzaSyAEN2A95ScN86AFYmowc36AgPFkn4seGRc"></iframe> 
+
+      
+      
+      </apex:pageBlockSection>
+      
+  </apex:pageBlock>
+
+</apex:page>

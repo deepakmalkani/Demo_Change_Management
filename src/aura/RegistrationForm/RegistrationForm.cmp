@@ -1,0 +1,16 @@
+<aura:component implements="force:appHostable">
+	<ui:inputText aura:id="fName" label="First Name" />
+	<ui:inputText aura:id="lName" label="Last Name" />
+	<ui:inputPhone aura:id="Phone" label="Phone" />
+	<ui:inputSelect aura:id="Sal" multiple="false" label="Salutation">
+		<ui:inputSelectOption text="Dr." label="Dr."/>
+		<ui:inputSelectOption text="Mr." label="Mr." value="true"/>
+		<ui:inputSelectOption text="Mrs." label="Mrs." />
+		<ui:inputSelectOption text="Ms." label="Ms." />
+	</ui:inputSelect>
+	<ui:button aura:id="submitBttn" label="Submit" press="{!c.getInput}" buttonTitle="Click to see the Output Values"/>
+	<ui:outputText aura:id="OutFirstName" value=""/>
+	<ui:outputText aura:id="OutLastName" value=""/>
+	<ui:outputPhone aura:id="OutPhone" value=""/>
+	<ui:outputText aura:id="OutSal" value="" />
+</aura:component>

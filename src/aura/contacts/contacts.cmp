@@ -1,0 +1,27 @@
+<aura:component controller="ContactController" implements="force:appHostable">
+    <!-- Handle component initialization in a client-side controller -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <!-- Handle loading events by displaying a spinner -->
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+
+    <!-- Dynamically load the list of contacts -->
+    <aura:attribute name="contacts" type="Contact[]"/>
+
+    <!-- Create a drop-down list with two options -->
+    <ui:inputSelect aura:id="selection" change="{!c.select}">
+        <ui:inputSelectOption text="All Contacts" label="All Contacts"/> 
+        <ui:inputSelectOption text="All Primary" label="All Primary"/>
+    </ui:inputSelect>
+    
+    <div class="icons">
+        <img src="/img/icon/custom51_100/chalkboard16.png" alt="Create New" title="Create New" onclick="{!c.createRecord}"/>
+    </div>
+    <div><center><ui:spinner aura:id="spinner"/></center></div>
+  
+    <!-- Iterate over the list of contacts and display them -->
+    <aura:iteration var="contact" items="{!v.contacts}">
+        <c:contactList contact="{!contact}"/>
+    </aura:iteration>
+</aura:component>

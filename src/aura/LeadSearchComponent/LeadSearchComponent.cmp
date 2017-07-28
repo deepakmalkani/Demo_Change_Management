@@ -1,0 +1,24 @@
+<aura:component controller="LeadSearchController" implements="force:appHostable,flexipage:availableForAllPageTypes">
+    <aura:attribute access="public" name="maxResults" type="Integer" default="10"/>
+    <aura:attribute access="public" name="leadList" type="Lead[]"/>
+    <aura:registerEvent name="leadFoundEvent" type="c:leadFoundEvent"/>
+    <aura:handler name="leadFoundEvent" event="c:leadFoundEvent" action="{!c.returnLeads}"/>
+    <ltng:require styles="/resource/slds090/assets/styles/salesforce-lightning-design-system.min.css"/>
+  
+    <div>
+        <ui:inputText aura:id="searchTerm" label="Search Lead : " placeholder="Enter Lead Name" />
+        <ui:button label="Search" press="{!c.search}"/>
+    </div>
+	<div class="slds-card">
+     
+    	<aura:iteration items="{!v.leadList}" var="lead">
+    		<p class="slds-truncate"> Lead Id :                
+            	<ui:outputText value="{!lead.Id}"/>
+            </p>
+            <p class="slds-truncate"> Lead Name :
+                <ui:outputText value="{!lead.Name}"/>
+            </p>
+        </aura:iteration>    
+    </div>
+    
+</aura:component>

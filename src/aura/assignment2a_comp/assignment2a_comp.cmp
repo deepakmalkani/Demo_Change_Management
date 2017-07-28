@@ -1,0 +1,11 @@
+<aura:component >
+    <c:assignment2_comp >
+    	
+        <aura:set attribute="header">
+        	Hello Header !!
+        </aura:set>
+        <aura:set attribute="body">
+        	Hello Body !!
+        </aura:set>
+    </c:assignment2_comp>
+</aura:component>

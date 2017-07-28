@@ -1,0 +1,7 @@
+<apex:component controller="componentController">
+  //step 3 : assign to attribute will fire
+  <apex:attribute name="value" type="String" description="Sample Component" assignTo="{!selectedValue}"/>
+  <p>Value = {!value}</p> 
+  <p>selectedValue = {!selectedValue}</p> 
+  <p>EditMode = {!editMode}</p>
+</apex:component>

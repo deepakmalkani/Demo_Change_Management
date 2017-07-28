@@ -1,0 +1,5 @@
+<aura:component >
+	<aura:attribute name="myText" type="String"/>
+	<aura:handler event="c:message" action="{!c.answer}"/>
+	Message : {!v.myText}
+</aura:component>

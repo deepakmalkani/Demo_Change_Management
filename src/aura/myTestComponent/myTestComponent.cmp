@@ -1,0 +1,8 @@
+<aura:component implements="force:appHostable">
+    <aura:attribute name="num1" type="Integer" default="1.0"/>
+    <aura:attribute name="num2" type="Integer" default="2.0"/>
+    <aura:attribute name="sum" type="Integer"/>
+    {!v.num1}+{!v.num2} = {!v.sum}
+    <!-- Press Button to add Numbers -->
+    <ui:button label="Add Numbers" press="{!c.add}"/>
+</aura:component>

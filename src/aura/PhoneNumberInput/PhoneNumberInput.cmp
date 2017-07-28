@@ -1,0 +1,8 @@
+<!--
+	Aura Input component which will send Phone Numbers.
+-->
+<aura:component >
+    <aura:registerEvent name="myPhoneEvent" type="c:PhoneNumberEvent" />
+    <ui:inputPhone aura:id="phone" label="phone" placeholder="111-111-1111" />
+    <ui:button label="Show Phone" press="{!c.firePhone}" />
+</aura:component>

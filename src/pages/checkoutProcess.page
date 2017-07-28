@@ -1,0 +1,19 @@
+<apex:page standardController="Contact" tabStyle="Contact" showHeader="true" sidebar="true" extensions="CheckoutContExt">
+  <apex:form >
+      <apex:pageBlock title="Validate Your information">
+          <apex:pageBlockButtons >
+              <apex:commandButton value="Check your Account" action="{!AccountChk}"/>
+              <apex:commandButton value="Search Inventory" action="{!srchInventory}" rendered="{!AccntSummBlock}"/>
+          </apex:pageBlockButtons>
+          <apex:pageBlockSection collapsible="false" title="Enter your Library Card #">
+              <apex:inputText label="Library Card #" value="{!lcNumber}"/>
+          </apex:pageBlockSection>
+          <apex:pageBlockSection collapsible="false" title="Customer Summary" rendered="{!AccntSummBlock}">
+              <apex:outputField value="{!Contact.FirstName}"/>
+              <apex:outputField value="{!Contact.LastName}"/>
+              <apex:outputField value="{!Contact.Email}"/>
+              <apex:outputField value="{!Contact.Phone}"/>  
+          </apex:pageBlockSection>
+      </apex:pageBlock>
+  </apex:form>
+</apex:page>

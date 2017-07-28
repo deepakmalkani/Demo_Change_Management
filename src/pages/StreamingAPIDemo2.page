@@ -1,0 +1,55 @@
+<apex:page >
+    <apex:includeScript value="{!$Resource.cometd2}"/>
+    <apex:includeScript value="{!$Resource.jquery}"/>
+    <apex:includeScript value="{!$Resource.json2}"/>
+    <apex:includeScript value="{!$Resource.jquery_cometd}"/>
+    <script type="text/javascript">
+    (function($){
+        $(document).ready(function() {
+            // Connect to the CometD endpoint
+            $.cometd.init({
+               url: window.location.protocol+'//'+window.location.hostname+'/cometd/35.0/',
+               requestHeaders: { Authorization: 'OAuth {!$Api.Session_ID}'}
+           });
+
+           // Subscribe to a topic. JSON-encoded update will be returned
+           // in the callback
+           $.cometd.subscribe('/topic/InvoiceSTatementUpdates', function(message) {
+              var tbl = $('<table></table>').attr({ id: "bob" }); 
+               var row = $('<tr></tr>').appendTo(tbl);
+            //   $('<td></td>').text(' '+JSON.stringify(message.channel)).appendTo(row);
+              $('<td></td>').text('testt').appendTo(row);
+               tbl.appendTo($(".content"));  
+             //  $('#tabData').append(' '+JSON.stringify(message.channel) +JSON.stringify(message.data.sobject.Name));
+             //  $('#table1').append('<td>Notification: ' +
+             //       'Channel: ' + JSON.stringify(message.channel) + '<br>' +
+             //       'Record name: ' + JSON.stringify(message.data.sobject.Name) +
+             //       '<br>' + 'ID: ' + JSON.stringify(message.data.sobject.Id) + 
+             //       '<br>' + 'Event type: ' + JSON.stringify(message.data.event.type)+
+             //       '<br>' + 'Created: ' + JSON.stringify(message.data.event.createdDate) + 
+             //       '</td>');
+            });
+        });
+   })(jQuery)
+   function disconnect() {
+       $.cometd.disconnect();
+   }
+   window.onbeforeunload = disconnect;
+   </script>
+    <body>
+    <div id="content">
+    <h1>Streaming API Test Page</h1>
+    <p>This is a demonstration page for Streaming API. Notifications from the 
+       InvoiceStatementUpdates channel will appear here...</p>   
+   <!--<table id="mtTable" border="5.0" style="width:100%">
+       <tr>       
+           <th>Channel</th>
+           <th>Record Name</th>
+       </tr>
+       <tr>
+           <td id="tabData"/>
+       </tr>
+   </table>-->
+   </div>
+    </body>
+</apex:page>

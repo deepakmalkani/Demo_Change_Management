@@ -1,0 +1,8 @@
+<apex:page controller="mycustomcontroller2" tabStyle="Account" showChat="true" showHeader="true" sidebar="false">
+    <apex:form >
+        <apex:pageBlock title="Section 1">
+            
+        </apex:pageBlock>
+    </apex:form>
+
+</apex:page>

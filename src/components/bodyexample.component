@@ -1,0 +1,5 @@
+<apex:component >
+    <apex:outputText value="Output by Component 1" /> <br/>
+    <apex:componentBody />
+    <apex:outputText value="Output by Component 2" /><br/>
+</apex:component>

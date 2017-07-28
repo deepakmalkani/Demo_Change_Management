@@ -1,0 +1,19 @@
+<!--
+
+	Lightning component created for Trailhead exercise
+
+-->
+ 
+<aura:component access="public">
+	<aura:attribute name="inputNumber1" type="String" />
+	<aura:attribute name="inputNumber2" type="String" />
+	<aura:attribute name="inputNumber3" type="String" />
+
+	<ui:inputNumber aura:id="inputOne" value="" label="Enter Number 1"/>
+	<ui:inputNumber aura:id="inputTwo" value="" label="Enter Number 2"/>
+	<ui:inputNumber aura:id="inputThree" value="" label="Enter Number 3" placeholder="Subtraction Number"/>
+	<ui:button aura:id="buttnSubmit" label="Submit" press="{!c.calculate}"/>
+	<ui:outputNumber aura:id="totalValue" value="" />
+ 
+
+</aura:component>

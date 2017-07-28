@@ -1,0 +1,28 @@
+<apex:page standardStylesheets="false" showHeader="false" sidebar="false" docType="HTML-5.0" applyBodyTag="false" applyHtmlTag="false">
+  <style type="text/css">
+      .italicText {font-style: italic; }
+      [id*=myId] {font-style: bold; }
+  </style>
+  <apex:stylesheet value="{!$Resource.customCSS}"/>
+  <h1>Congratulations</h1>
+  <p>This is your new Page: styledPage</p>
+  <apex:outputLink value="http://www.salesforce.com" styleClass="newLink">
+      this is the new link
+  </apex:outputLink>
+  <p>
+  <apex:outputText styleClass="italicText" value="This text will be in Italic" />
+  </p>
+  <apex:outputText id="myId" styleClass="Id" value="This is another text"/>
+  <!-- End Default Content REMOVE THIS -->
+  <html>
+      <body>
+          <header>
+              <h1>Congrats once again..!!</h1>
+          </header>
+          <article>
+              <p>This page looks like HTML 5</p>
+          </article>
+      </body>
+  </html>
+  
+</apex:page>

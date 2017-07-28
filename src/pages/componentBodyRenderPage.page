@@ -1,0 +1,8 @@
+<!-- Page: --> 
+<apex:page >
+    <apex:outputText value="(page) This is before the custom component"/><br/>
+         <c:bodyexample >
+        <apex:outputText value="ADDING COMPONENT BODY HERE" /> <br/>
+        </c:bodyexample>
+    <apex:outputText value="(page) This is after the custom component"/><br/>
+</apex:page>

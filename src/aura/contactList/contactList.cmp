@@ -1,0 +1,27 @@
+<aura:component >
+    <aura:attribute name="contact" type="Contact"/>
+    <!-- If you’re using a namespace, use {!v.contact.myNamespace__Level__c} instead -->
+    <div class="{!v.contact.dpklightning__Level__c == 'Primary'
+    ? 'row primary' : 'row '}" >
+        <!-- Display a contact name
+        and navigate to record when the name is clicked -->
+        <div class="col-sm-4">
+        	<ui:outputText value="{!v.contact.Name}" click="{!c.gotoRecord}"/>
+        </div>
+        <div class="col-sm-4">
+        	<ui:outputEmail value="{!v.contact.Email}"/>
+            <ui:outputPhone value="{!v.contact.Phone}"/>
+            <!-- Display the edit record page when the icon is clicked -->
+            <div onclick="{!c.editRecord}">
+            	<img src="/img/icon/custom51_100/pencil16.png" alt="Edit Contact"
+            	title="Edit Contact" />
+            </div>
+        </div>
+        <div class="col-sm-4">
+        	<ui:outputTextArea aura:id="address" value="{!v.contact.MailingStreet}"
+        	click="{!c.navigate}"/>
+        </div>
+        <!-- Navigate to the related list when the button is clicked -->
+        <ui:button label="View Cases" press="{!c.relatedList}"/>
+    </div>
+</aura:component>

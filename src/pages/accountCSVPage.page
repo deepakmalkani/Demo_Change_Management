@@ -1,0 +1,8 @@
+<apex:page standardController="Account" recordSetVar="accounts" contentType="application/vnd.ms-excel">
+  <apex:pageBlock >
+      <apex:pageBlockTable value="{!accounts}" var="acc">
+          <apex:column value="{!acc.Name}"/>
+          <apex:column value="{!acc.Industry}"/>
+      </apex:pageBlockTable>
+  </apex:pageBlock>>
+</apex:page>
