@@ -28,5 +28,10 @@
         <members>*</members>
         <name>StaticResource</name>
     </types>
+    <types>
+        <members>Batch_Error_Log__c</members>
+        <members>Batch_Tracker__c</members>
+        <name>CustomObject</name>
+    </types>
     <version>38.0</version>
 </Package>
