@@ -5,9 +5,7 @@
 */
 
 //made a small change
-//er2er2dqwdqwd
-//one more change
-//Aaron : One more change here 
+//Aaron : One more change here
 
 global class AccntCloneBatch implements Database.batchable<Account>,Database.Stateful
 {
